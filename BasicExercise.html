@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<header>
+			<ul>
+				<li class="first">Item 1</li>
+				<li class="selected">Item 2</li>
+				<li class="last">Item 3</li>
+			</ul>
+		</header>
+		<div class="col">
+			<section>
+				<h2>Section 1</h2>
+			</section>
+			<section class="current">
+				<h2 class="highlight">Section 2</h2>
+			</section>
+			<section>
+				<h1>Section 3</h1>
+			</section>
+		</div>
+		<div>Other div</div>
+	</body>
+	
+	<script>
+		function makeRed(element) {
+			element.css("background-color","red");
+		}
+
+		var topLevelHeader = $("header");
+		var sections = $("section");
+		var currentSection = $("section.current");
+		var nextSection = currentSection.next();
+		var prevSectionHeader = currentSection.prev().find("h2");
+		var divWithHighlightedSection = $("div").filter(function(index) {
+			return $(this).find("section").find("h2.highlight").length > 0;
+		});
+		var h2Sections = $("section > h2");
+		
+		makeRed(divWithHighlightedSection);
+		
+	</script>
+</html>

@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<style>
+		* {font-family: sans-serif;}
+		#form {line-height: 2;}
+		#form input {margin-left: 25px;}
+		#form input[id="phone"] { margin-left: 10px;}
+		#form textarea {
+			margin-left: 2px;
+			margin-top: 10px;
+		}
+		.warning {
+			color: red;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="pre-form">
+			<h2>We'd love to hear your thoughts!</h2>
+		</div>
+		<div class="form-container">
+			<form id="form" name="form">
+				<h3>Contact Us Here:</h3>
+				<p id="message"></p>
+				<label>Name:</label>
+				<input id="name" placeholder="Name" type="text"><br>
+				<label>Email:</label>
+				<input id="email" placeholder="Email" type="email"><br>
+				<label>Number:</label>
+				<input id="phone" placeholder="10 digit phone number." type="tel"><br>
+				<label>Feedback:</label>
+				<textarea id="feedback" placeholder="Your thoughts here :)"></textarea><br>
+				<input id="submit" type="submit" value="Send It!">
+			</form>
+		</div>
+	</body>
+	
+	<script>
+		function validate(event) {
+			event.preventDefault();
+			var nameInput = $("#name");
+			var emailInput = $("#email");
+			var numberInput = $("#phone");
+			var messageInput = $("#message");
+			
+			var required = [ nameInput, emailInput, numberInput ];
+			for(var i=0;i<required.length;i++) {
+				if(!required[i].val()) {
+					messageInput.text("Please fill out required fields");
+					messageInput.addClass("warning");
+					required[i].prev().addClass("warning");
+				} else {
+					required[i].prev().removeClass("warning");
+				}
+			}
+			if ($("label.warning").length > 0) {
+				return false;
+			}
+			
+			$("#form").remove();
+			$("#pre-form").children().first().text("Thanks for your feedback!");
+			return false;
+		}
+		
+		$(document).ready(function() {
+			$("#form").on("submit", validate);
+		});
+	</script>
+</html>
